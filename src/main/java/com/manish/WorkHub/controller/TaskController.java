@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.annotation.Repeatable;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api/task")
@@ -22,8 +23,18 @@ public class TaskController {
         return new ResponseEntity<>(taskService.addTask(taskRequest), HttpStatus.CREATED);
     }
 
-    @PostMapping("/change-status/:{id}")
-    public ResponseEntity<Boolean> changeStatus(@PathVariable String id){
-        return new ResponseEntity<>(taskService.changeStatus(id),HttpStatus.ACCEPTED);
+    @PutMapping("/changeStatus/{taskId}")
+    public ResponseEntity<Boolean> changeStatus(@PathVariable String taskId,@PathVariable String status){
+        return new ResponseEntity<>(taskService.changeStatus(taskId,status),HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<TaskResponse>> getAll(){
+        return new ResponseEntity<>(taskService.getAll(),HttpStatus.OK);
+    }
+
+    @GetMapping("/all/{userId}")
+    public ResponseEntity<List<TaskResponse>> getByUserId(@PathVariable String userId){
+        return new ResponseEntity<>(taskService.getByUserId(userId),HttpStatus.OK);
     }
 }
