@@ -1,16 +1,15 @@
-package com.manish.WorkHub.model;
+package com.manish.WorkHub.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
-@Document
-public class Task {
-    @Id
+@NoArgsConstructor
+public class TaskRequest {
     private String taskId;
     private String userId;
     private String tag;
