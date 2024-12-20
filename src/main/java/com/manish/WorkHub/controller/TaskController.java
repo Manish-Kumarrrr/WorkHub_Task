@@ -1,6 +1,5 @@
 package com.manish.WorkHub.controller;
 
-
 import com.manish.WorkHub.dto.TaskRequest;
 import com.manish.WorkHub.dto.TaskResponse;
 import com.manish.WorkHub.service.TaskService;
@@ -30,12 +29,12 @@ public class TaskController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<TaskResponse>> getAll(){
+    public ResponseEntity<List<TaskResponse>> getAllTask(){
         return new ResponseEntity<>(taskService.getAll(),HttpStatus.OK);
     }
 
     @GetMapping("/all/{userId}")
-    public ResponseEntity<List<TaskResponse>> getByUserId(@PathVariable String userId){
-        return new ResponseEntity<>(taskService.getByUserId(userId),HttpStatus.OK);
+    public ResponseEntity<List<TaskResponse>> getAllTaskByUserId(@PathVariable String userId){
+        return new ResponseEntity<>(taskService.getAllTaskByUserId(userId),HttpStatus.OK);
     }
 }

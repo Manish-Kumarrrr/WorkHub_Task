@@ -22,4 +22,6 @@ public class TaskResponse {
     private List<String> images;
     private String status;
     private String description;
+    private String lattitude;
+    private String longitude;
 }

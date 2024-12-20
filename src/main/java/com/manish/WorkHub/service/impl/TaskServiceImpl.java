@@ -47,7 +47,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskResponse> getByUserId(String userId) {
+    public List<TaskResponse> getAllTaskByUserId(String userId) {
         // Fetch tasks by userId (assuming a custom query method exists)
         List<Task> tasks = taskRepository.findTaskByUserId(userId);
         List<TaskResponse> taskResponses = new ArrayList<>();

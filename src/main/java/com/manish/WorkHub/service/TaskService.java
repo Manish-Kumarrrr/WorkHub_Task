@@ -13,5 +13,5 @@ public interface TaskService {
 
     List<TaskResponse> getAll();
 
-    List<TaskResponse> getByUserId(String userId);
+    List<TaskResponse> getAllTaskByUserId(String userId);
 }

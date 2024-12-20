@@ -19,4 +19,6 @@ public class TaskRequest {
     private List<String> images;
     private String status;
     private String description;
+    private String lattitude;
+    private String longitude;
 }
