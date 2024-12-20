@@ -1,8 +1,16 @@
 package com.manish.WorkHub.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+
 import java.util.Date;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaskResponse {
     private String taskId;
     private String userId;
@@ -12,5 +20,6 @@ public class TaskResponse {
     private String phoneNo;
     private Date createdDate;
     private List<String> images;
-    private Boolean status;
+    private String status;
+    private String description;
 }

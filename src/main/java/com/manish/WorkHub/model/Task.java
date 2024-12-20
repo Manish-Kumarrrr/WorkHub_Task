@@ -1,8 +1,10 @@
 package com.manish.WorkHub.model;
 
 import lombok.Data;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
 import java.util.List;
@@ -19,5 +21,6 @@ public class Task {
     private String phoneNo;
     private Date createdDate;
     private List<String> images;
-    private Boolean status;
+    private String status;
+    private String description;
 }

@@ -2,7 +2,6 @@ package com.manish.WorkHub.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
@@ -18,5 +17,6 @@ public class TaskRequest {
     private String phoneNo;
     private Date createdDate;
     private List<String> images;
-    private Boolean status;
+    private String status;
+    private String description;
 }
