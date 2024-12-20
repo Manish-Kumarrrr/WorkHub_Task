@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.annotation.Repeatable;
 import java.util.List;
 
 @RestController
@@ -23,8 +21,11 @@ public class TaskController {
         return new ResponseEntity<>(taskService.addTask(taskRequest), HttpStatus.CREATED);
     }
 
-    @PutMapping("/changeStatus/{taskId}")
+    @PutMapping("/changeStatus/{taskId}/{status}")
     public ResponseEntity<Boolean> changeStatus(@PathVariable String taskId,@PathVariable String status){
+        if(!(status.equals("Active") || status.equals("Deactive"))){
+            return new ResponseEntity<>(false,HttpStatus.OK);
+        }
         return new ResponseEntity<>(taskService.changeStatus(taskId,status),HttpStatus.ACCEPTED);
     }
 
