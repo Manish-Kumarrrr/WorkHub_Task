@@ -12,8 +12,8 @@ public class TaskRequest {
     private String taskId;
     private String userId;
     private String tag;
-    private String charge;
-    private String emailId;
+    private String pay;
+    private String email;
     private String phoneNo;
     private Date createdDate;
     private List<String> images;
@@ -21,4 +21,9 @@ public class TaskRequest {
     private String description;
     private String lattitude;
     private String longitude;
+    private String address;
+    private String city;
+    private String state;
+    private String pincode;
+
 }
