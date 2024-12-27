@@ -12,12 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +24,25 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
     private final ModelMapper modelMapper;
+
+    @Scheduled(cron = "0 0 2 * * *") // Cron expression for running every minute
+    public void taskCleanUp() {
+        // Get the current date
+        Date currentDate = new Date();
+
+        // Create a Calendar instance and set it to the current date
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+
+        // Subtract 6 months
+        calendar.add(Calendar.MONTH, -6);
+
+        // Get the date 6 months ago
+        Date sixMonthsAgo = calendar.getTime();
+
+        // Delete tasks older than 6 months
+        taskRepository.deleteByCreatedDateBefore(sixMonthsAgo);
+    }
     @Override
     public TaskResponse addTask(TaskRequest taskRequest) {
         taskRequest.setTaskId(null);
