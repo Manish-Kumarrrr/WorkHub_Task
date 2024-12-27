@@ -6,11 +6,9 @@ import com.manish.WorkHub.dto.TaskRequest;
 import com.manish.WorkHub.dto.TaskResponse;
 import com.manish.WorkHub.service.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api/task")
@@ -31,9 +29,18 @@ public class TaskController {
         return new ResponseEntity<>(taskService.changeStatus(taskId,status),HttpStatus.ACCEPTED);
     }
 
+//    @GetMapping("/all")
+//    public ResponseEntity<List<TaskResponse>> getAllTask(){
+//        return new ResponseEntity<>(taskService.getAll(),HttpStatus.OK);
+//    }
     @GetMapping("/all")
-    public ResponseEntity<List<TaskResponse>> getAllTask(){
-        return new ResponseEntity<>(taskService.getAll(),HttpStatus.OK);
+    public ResponseEntity<PaginationResponse<TaskResponse>> getAllTask(
+            @RequestParam(value="pageNumber",defaultValue = AppConstants.PAGE_NUMBER,required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize",defaultValue = AppConstants.PAGE_SIZE ,required = false) Integer pageSize,
+            @RequestParam(value="sortBy",defaultValue = AppConstants.SORT_BY,required = false) String sortBy,
+            @RequestParam(value="sortDir" , defaultValue = AppConstants.SORT_DIR,required = false) String sortDir)
+    {
+        return new ResponseEntity<>(taskService.getAllTask(pageNumber,pageSize,sortBy,sortDir),HttpStatus.OK);
     }
 
 //    @GetMapping("/all/{userId}")

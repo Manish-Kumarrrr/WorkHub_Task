@@ -18,4 +18,6 @@ public interface TaskService {
     List<TaskResponse> getAllTaskByUserId(String userId);
 
     PaginationResponse<TaskResponse> getAllTaskByUserId(String userId, Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
+
+    PaginationResponse<TaskResponse> getAllTask(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 }

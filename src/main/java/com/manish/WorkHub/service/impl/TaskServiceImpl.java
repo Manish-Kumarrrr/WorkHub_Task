@@ -68,14 +68,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public PaginationResponse<TaskResponse> getAllTaskByUserId(String userId, Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
-        Sort sort=null;
-        if(sortDir.equalsIgnoreCase("asc")){
-            sort=Sort.by(sortBy).ascending();
-        }
-        else
-            sort=Sort.by(sortBy).descending();
-
-        Pageable pageable = PageRequest.of(pageNumber,pageSize, sort);// org.springframework.data.domain
+        Pageable pageable = PageRequest.of(pageNumber,pageSize, buildSort(sortDir,sortBy));// org.springframework.data.domain
 
         Page<Task> pageTask=taskRepository.findTaskByUserId(userId, pageable);
         List<Task> allPosts=pageTask.getContent();
@@ -88,6 +81,33 @@ public class TaskServiceImpl implements TaskService {
         response.setTotalElements(pageTask.getTotalElements());
         response.setLastPage(pageTask.isLast());
         return response;
+    }
+
+    @Override
+    public PaginationResponse<TaskResponse> getAllTask(Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize, buildSort(sortDir,sortBy));// org.springframework.data.domain
+
+        Page<Task> pageTask=taskRepository.findAll(pageable);
+        List<Task> allPosts=pageTask.getContent();
+        List<TaskResponse> taskResponses=allPosts.stream().map(post -> modelMapper.map(post,TaskResponse.class)).collect(Collectors.toList());
+        PaginationResponse<TaskResponse> response=new PaginationResponse<>();
+        response.setContent(taskResponses);
+        response.setPageNumber(pageTask.getNumber());
+        response.setPageSize(pageTask.getSize());
+        response.setTotalPages(pageTask.getTotalPages());
+        response.setTotalElements(pageTask.getTotalElements());
+        response.setLastPage(pageTask.isLast());
+        return response;
+    }
+
+    Sort buildSort(String sortDir, String sortBy){
+        Sort sort=null;
+        if(sortDir.equalsIgnoreCase("asc")){
+            sort=Sort.by(sortBy).ascending();
+        }
+        else
+            sort=Sort.by(sortBy).descending();
+        return sort;
     }
 
 }

@@ -20,6 +20,6 @@ public interface TaskRepository extends MongoRepository<Task, String>  {
     void updateStatus(String taskId, String status);
 
     Page<Task> findTaskByUserId(String userId, Pageable pageable);
-
+    Page<Task> findAll(Pageable pageable);
 
 }
