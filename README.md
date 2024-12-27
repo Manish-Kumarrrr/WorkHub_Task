@@ -7,6 +7,7 @@ WorkHub_Task_Service is a microservice responsible for managing tasks within the
 - **Task Management**: 
   - Create and update tasks.
   - Support pagination for efficient task retrieval.
+  - Cron Job for cleaning old tasks from database.
 - **Messaging**: Uses Kafka as a message queue for scalable and asynchronous task processing.
 - **Database**: Stores and retrieves task data in MongoDB.
 
@@ -15,7 +16,6 @@ WorkHub_Task_Service is a microservice responsible for managing tasks within the
 - **Backend**: Spring Boot
 - **Database**: MongoDB
 - **Messaging**: Apache Kafka
-- **Pagination**: Built-in support for efficient data retrieval.
 
 ## Prerequisites
 
@@ -24,6 +24,7 @@ Ensure the following are installed and configured:
 - **Java**: Version 19
 - **MongoDB**: Running and accessible.
 - **Kafka**: Running with configured topics for task processing.
+- **Cloudinary**: Uploading multiple images of task.
 ## Getting Started
 
 Follow the steps below to set up and run WorkHub locally:
@@ -61,4 +62,11 @@ Run the following commands to start the server:
 ```
 
 This `README.md` provides a high-level overview of the service and its features without delving into specific API endpoint details.
+## Acknowledgments
+
+- A big thanks to **Medium** and **Stack Overflow** for their invaluable community support and resources, which greatly helped in the development of this project.
+
+---
+
+**Happy Coding!** 🚀
 
